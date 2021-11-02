@@ -1,22 +1,21 @@
 import { FeedList } from 'components/Feeds/FeedList';
+import { useEffect } from 'react';
 import { Spinner } from 'react-bootstrap';
-import { useQuery } from 'react-query';
-import { fetchFeeds } from 'services';
-import { ApiServiceKey } from 'utils';
+import { useSelector } from 'react-redux';
+import { RootState, useAppDispatch } from 'store/app-store';
+import { fetchFeedsAsync } from 'store/feed';
 
 export const HomePage: React.FC<{}> = () => {
-  const { isLoading, data: feedList } = useQuery(
-    ApiServiceKey.FetchFeeds,
-    async () => {
-      const response = await fetchFeeds();
-      console.log(response.data, 'LOG');
-      return response.data;
-    }
-  );
+  const dispatch = useAppDispatch();
+  const { status, feeds } = useSelector((state: RootState) => state.feeds);
 
-  if (isLoading) {
+  useEffect(() => {
+    dispatch(fetchFeedsAsync());
+  }, [dispatch]);
+
+  if (status === 'loading') {
     return <Spinner animation='border' variant='success' />;
   }
 
-  return <FeedList items={feedList} />;
+  return <FeedList items={feeds} />;
 };

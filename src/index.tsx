@@ -5,7 +5,7 @@ import App from './App';
 import { Provider } from 'react-redux';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { QueryClient, QueryClientProvider } from 'react-query';
-import { store } from 'store';
+import { store } from 'store/app-store';
 
 const queryClient = new QueryClient();
 
