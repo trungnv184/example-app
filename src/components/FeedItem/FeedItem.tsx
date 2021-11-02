@@ -9,10 +9,10 @@ export type FeedProps = {
 export const FeedItem: React.FC<FeedProps> = ({ item }) => {
   return (
     <Card className='text-center'>
-      <Card.Img src={item.imageUrl} />
+      <Card.Img src={item.url} />
       <Card.Body>
-        <Card.Title>{item.title}</Card.Title>
-        <Card.Text>{item.content}</Card.Text>
+        <Card.Title>{item.name}</Card.Title>
+        {/* <Card.Text>{item.content}</Card.Text> */}
       </Card.Body>
     </Card>
   );

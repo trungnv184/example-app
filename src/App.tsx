@@ -1,15 +1,23 @@
-import { FeedList } from 'components/Feeds/FeedList';
 import { Layout } from 'components/Layout/Layout';
-import { Feed } from 'types';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import './App.css';
+import { HomePage } from 'pages/Home/Home';
+
+const AppRoute = () => {
+  return (
+    <Switch>
+      <Route path='/' component={HomePage} />
+    </Switch>
+  );
+};
 
 function App() {
-  const feedList: Feed[] = [];
-
   return (
-    <Layout>
-      <FeedList items={feedList} />
-    </Layout>
+    <Router>
+      <Layout>
+        <AppRoute />
+      </Layout>
+    </Router>
   );
 }
 
