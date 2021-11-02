@@ -1,21 +1,28 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { stat } from 'fs';
 import { Feed } from 'types';
 import { fetchFeedsAsync } from './feed-actions';
 
 export interface FeedState {
   feeds: Feed[];
   status: 'loading' | 'idle' | 'failed';
+  selected?: Feed;
 }
 
 const initialState: FeedState = {
   feeds: [],
   status: 'idle',
+  selected: undefined,
 };
 
 export const feedSlice = createSlice({
   name: 'feeds',
   initialState,
-  reducers: {},
+  reducers: {
+    selectItem: (state, action) => {
+      state.selected = action.payload;
+    },
+  },
   extraReducers: (builder) => {
     builder.addCase(fetchFeedsAsync.pending, (state) => {
       state.status = 'loading';

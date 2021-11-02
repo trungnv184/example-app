@@ -1,5 +1,7 @@
 import React from 'react';
-import { Card } from 'react-bootstrap';
+import { Button, Card } from 'react-bootstrap';
+import { useAppDispatch } from 'store/app-store';
+import { feedActions } from 'store/feed';
 import { Feed } from 'types/Feed';
 
 export type FeedProps = {
@@ -7,12 +9,19 @@ export type FeedProps = {
 };
 
 export const FeedItem: React.FC<FeedProps> = ({ item }) => {
+  const dispatch = useAppDispatch();
+
+  const selectItem = () => {
+    dispatch(feedActions.selectItem(item));
+  };
   return (
     <Card className='text-center'>
       <Card.Img src={item.url} />
       <Card.Body>
         <Card.Title>{item.name}</Card.Title>
-        {/* <Card.Text>{item.content}</Card.Text> */}
+        <Button variant='primary' onClick={selectItem}>
+          SELECT
+        </Button>
       </Card.Body>
     </Card>
   );

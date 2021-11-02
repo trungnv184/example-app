@@ -18,3 +18,12 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ### Unit Test
 - Missing cover unit test
+
+### Redux With TypeScript
+```
+
+export type RootState = ReturnType<typeof store.getState>;
+export type AppDispatch = typeof store.dispatch;
+export const useAppDispatch = () => useDispatch<AppDispatch>();
+
+```
