@@ -1,5 +1,4 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { stat } from 'fs';
 import { Feed } from 'types';
 import { fetchFeedsAsync } from './feed-actions';
 
